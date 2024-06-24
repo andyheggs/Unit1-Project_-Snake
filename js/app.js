@@ -26,31 +26,34 @@
 // As a user, I want to maintain a record of the top five highest scores.
 
 /*-------------------------------- Constants --------------------------------*/
+//Game area grid size:
+const gridSize = gridWidth * gridHeight
+const gridWidth = 20px
+const gridHeight = 20px
 
-// const gridSize = gridWidth * gridHeight
-// const gridWidth('Y')
-// const gridHeight('X')
-// const initialSnakeLength
-// const initialSpeed
-// const speedIncrement
-// const maxHighScores
+const initialSnakeLength 
+const initialSpeed
+const speedIncrement
+const maxHighScores
 
 
 /*---------------------------- Variables (state) ----------------------------*/
+//Snake starting position
 
-// let snake
-// let food
-// let direction
-// let score
-// let gameInterval
-// let speed
-// let highScores
+let snake
+let food
+let direction
+let score
+let gameInterval
+let speed
+let highScores
 
 /*------------------------ Cached Element References ------------------------*/
 
 // Cached Elements:
   // landingPage - grid
-  // gameArea - grid-cells
+const gameArea = document.querySelector('.gameArea')
+const cellElements = []
   // scoreDisplay
   // gameOverMessage
   // newGameButton
@@ -58,6 +61,12 @@
 
 /*------------------------ Grid Creation ------------------------*/
 
+for (let i = 0; i < gridSize.length; i++) {
+    const cell = document.createElement('div');
+    cell.innertext = i;
+    cell.classList.add('cell');
+    cell.id = i;
+}
 /*
     
 for (let i = 0; i < totalSquareCount; i++){
@@ -104,6 +113,6 @@ const removeCat = () => {
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-  // newGameButton.addEventListener('click', startNewGame)
-  // document.addEventListener('keydown', changeDirection)
+  newGameButton.addEventListener('click', startNewGame)
+  document.addEventListener('keydown', changeDirection)
 
