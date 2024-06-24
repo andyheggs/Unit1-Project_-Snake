@@ -9,11 +9,23 @@
     .high-score-display
     */
 
-    .h1 {
-        font-family: 'Impact', sans-serif;
-        font-size: 50px;
-        color: #28333e; /* Matching the dark grey-blue color from the snake image */
-        letter-spacing: 0.2em; /* Adds space between letters to emphasize each character */
-        text-align: center; /* Center align the header */
-        margin-top: 20px;
+body {
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 0;
+    display:flex;   
+}
+
+h1 {
+    font-family: 'Impact', sans-serif;
+    font-size: 50px;
+    color: #28333e; /* Matching the dark grey-blue color from the snake image */
+    letter-spacing: 0.2em; /* Adds space between letters to emphasize each character */
+    text-align: center; /* Center align the header */
+    margin-top: 20px;
     }
+
+ . gameArea {
+
+ }

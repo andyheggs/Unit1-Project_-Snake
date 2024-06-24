@@ -28,18 +28,18 @@
 /*-------------------------------- Constants --------------------------------*/
 //Game area grid size:
 const gridSize = gridWidth * gridHeight
-const gridWidth = 20px
-const gridHeight = 20px
+const gridWidth = 20
+const gridHeight = 20
 
-const initialSnakeLength 
-const initialSpeed
-const speedIncrement
-const maxHighScores
+//const initialSnakeLength 
+//const initialSpeed
+//const speedIncrement
+//const maxHighScores
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 //Snake starting position
-
+let snakePosition = 105
 let snake
 let food
 let direction
@@ -53,51 +53,35 @@ let highScores
 // Cached Elements:
   // landingPage - grid
 const gameArea = document.querySelector('.gameArea')
-const cellElements = []
+const cellElements = [] 
   // scoreDisplay
   // gameOverMessage
   // newGameButton
   // highScoreDisplay
 
 /*------------------------ Grid Creation ------------------------*/
-
+//create a for loop integrating with the DOM to loop through the 20 x 20 grid ('gridSize') adding a ('cell'/div) in the 'gameArea'
+//assign each 'cell'/div a char 'i' 
+//add each 'cell' to the div classlist with an id of 'i'   
 for (let i = 0; i < gridSize.length; i++) {
     const cell = document.createElement('div');
     cell.innertext = i;
     cell.classList.add('cell');
     cell.id = i;
-}
-/*
-    
-for (let i = 0; i < totalSquareCount; i++){
-  const square = document.createElement('div')
-  square.innerText = i
-  square.classList.add('sqr')
-  square.id = i
-  
-  ** Add Cat, if starting position
-  
-  if (catPosition === i) {
-    square.classList.add('cat')
-  }
+    // add snake to board in position 105
+    if (snakePosition === i) {
+        cell.classList.add('snake');
+    }
+//set the height and width of each cell in CSS ('style') proportionately to the size of the `gameArea`
+cell.style.gridHeight = `${200 / gridHeight}%`; 
+cell.style.gridWidth =  `${200 / gridWidth}%`;
 
-  ** Set Height and width in CSS
-  square.style.height = `${100 / height}%`
-  square.style.width = `${100 / width}%`
+cellElements.push(cell); //add cell to cellElements array
+gameArea.appendChild(cell); //append cell to page
 
-
-  squareEls.push(square) // Add square to squareEls array
-  grid.appendChild(square) // Add element to the page
 }
 
-const addCat = () => {
-  squareEls[catPosition].classList.add('cat')
-}
 
-const removeCat = () => {
-  squareEls[catPosition].classList.remove('cat')
-}
-*/
 
 /*-------------------------------- Functions --------------------------------*/
 
