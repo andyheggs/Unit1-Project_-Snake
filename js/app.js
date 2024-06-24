@@ -27,9 +27,10 @@
 
 /*-------------------------------- Constants --------------------------------*/
 //Game area grid size:
-const gridSize = gridWidth * gridHeight
-const gridWidth = 20
-const gridHeight = 20
+
+const gridWidth = 20;
+const gridHeight = 20;
+const gridSize = gridWidth * gridHeight;
 
 //const initialSnakeLength 
 //const initialSpeed
@@ -39,21 +40,21 @@ const gridHeight = 20
 
 /*---------------------------- Variables (state) ----------------------------*/
 //Snake starting position
-let snakePosition = 105
-let snake
-let food
-let direction
-let score
-let gameInterval
-let speed
-let highScores
+let snakePosition = 105;
+//let snake
+//let food
+//let direction
+//let score
+//let gameInterval
+//let speed
+//let highScores
 
 /*------------------------ Cached Element References ------------------------*/
 
-// Cached Elements:
+
   // landingPage - grid
-const gameArea = document.querySelector('.gameArea')
-const cellElements = [] 
+const gameArea = document.querySelector('.gameArea');
+const cellElements = []; 
   // scoreDisplay
   // gameOverMessage
   // newGameButton
@@ -62,10 +63,10 @@ const cellElements = []
 /*------------------------ Grid Creation ------------------------*/
 //create a for loop integrating with the DOM to loop through the 20 x 20 grid ('gridSize') adding a ('cell'/div) in the 'gameArea'
 //assign each 'cell'/div a char 'i' 
-//add each 'cell' to the div classlist with an id of 'i'   
-for (let i = 0; i < gridSize.length; i++) {
+//add each 'cell' to the div classlist with an id of 'i' 
+
+for (let i = 0; i < gridSize; i++) {
     const cell = document.createElement('div');
-    cell.innertext = i;
     cell.classList.add('cell');
     cell.id = i;
     // add snake to board in position 105
@@ -73,17 +74,42 @@ for (let i = 0; i < gridSize.length; i++) {
         cell.classList.add('snake');
     }
 //set the height and width of each cell in CSS ('style') proportionately to the size of the `gameArea`
-cell.style.gridHeight = `${200 / gridHeight}%`; 
-cell.style.gridWidth =  `${200 / gridWidth}%`;
+cell.style.height = `${200 / gridHeight}%`; 
+cell.style.width =  `${200 / gridWidth}%`;
 
 cellElements.push(cell); //add cell to cellElements array
 gameArea.appendChild(cell); //append cell to page
 
 }
 
-
+const addSnake = () => {
+    cellElements[snakePosition].classList.add('snake')
+  }
+  
+  const removeSnake = () => {
+    cellElements[snakePosition].classList.remove('snake')
+  }
 
 /*-------------------------------- Functions --------------------------------*/
+const handleMove = (evt) => {
+
+    removeSnake()
+  
+    if (evt.code === 'ArrowRight' && snakePosition % gridWidth !== gridWidth - 1) {
+      snakePosition++
+    } else if (evt.code === 'ArrowLeft' && snakePosition % gridWidth !== 0) {
+      snakePosition--
+    } else if (evt.code === 'ArrowDown' && snakePosition + gridWidth <= gridSize - 1) {
+      snakePosition += width
+    } else if (evt.code === 'ArrowUp' && snakePosition - gridWidth >= 0) {
+      snakePosition -= gridWidth
+    } else {
+      
+    }
+    
+    addSnake()
+
+}    
 
   // initializeGame()
   // generateFood()
@@ -96,7 +122,7 @@ gameArea.appendChild(cell); //append cell to page
   // displayHighScores()
 
 /*----------------------------- Event Listeners -----------------------------*/
-
-  newGameButton.addEventListener('click', startNewGame)
-  document.addEventListener('keydown', changeDirection)
+document.addEventListener('keydown', handleMove);
+  //newGameButton.addEventListener('click', startNewGame)
+  //document.addEventListener('keydown', changeDirection)
 
