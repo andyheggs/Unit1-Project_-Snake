@@ -1,0 +1,132 @@
+High-Level Overview Meeting Key Requirements
+
+1. **HTML Structure**
+    Create an HTML File
+    
+2. **Landing Page Elements:**
+    Include a title, instructions, and a "New Game" button.
+
+3. **Game Area Elements:**
+   Create a container for the game area and use div elements to represent the snake and food.
+
+4. **CSS for Layout and Design**
+   Style the Landing Page and Game Area
+
+5. **Layout:**
+   Use Flexbox/Grid for structuring the page and positioning elements within the game area.
+
+6. **Design:**
+   Define styles for the snake, food, and game area to ensure they are visually distinct and appropriately sized.
+
+7. **JavaScript for Game Logic**
+
+8. **Initialise Game Variables**
+   Define variables for the snake, food, direction, score, and game interval.
+   Select the game area container and set its dimensions.
+
+9. **Initialise the Game**
+   Set the initial position of the snake and direction.
+   Initialise the score and generate the first food item.
+   Hide the game over message and display the initial score.
+
+10. **Generate Food**
+    Create a div element for the food and randomly place it within the boundaries of the game area.
+
+11. **Draw Snake and Food**
+    Create div elements for each segment of the snake and position them appropriately within the game area.
+    Position the food div based on its coordinates.
+
+12. **Update Snake Position**
+    Move the snake in the current direction by updating the position of each div representing the snake segments.
+    Handle collisions with walls or the snake itself.
+    Check if snake eats the food, update the score, and generate new food if it does.
+
+13. **Game Loop**
+    Regularly update snake's position and redraw the game elements.
+
+14. **End Game**
+    Stop the game loop.
+    Display the game over message.
+    \*Save the score and update the high score list. *consider post MPV
+
+16. **Event Listeners**
+    Start New Game
+    Hide the landing page and show the game area.
+    Initialise the game and start the game loop.
+
+17. **Control Snake**
+    Listen for key presses to change the snake's direction.
+    Allow starting the game with the spacebar.
+
+18. **High Score Management**
+    Save High Score
+    Store the score in local storage.
+    Maintain and update a list of the top five scores.
+
+19. ***Display High Scores**
+    Retrieve high scores from local storage.
+    Display the high scores on the landing page or a dedicated high score section.
+
+20. **Additional Requirements**
+    User Interface and User Experience
+    Ensure instructions are clear and accessible.
+    Provide immediate feedback on user actions.
+    Maintain clean and error-free code adhering to coding conventions.
+
+//Constants:
+// const gridSize
+// const initialSnakeLength
+// const initialSpeed
+// speedIncrement
+// maxHighScores
+
+//Variables:
+// let snake
+// let food
+// let direction
+// let score
+// let gameInterval
+// let speed
+// let highScores
+
+// Cached Elements:
+  // landingPage
+  // gameArea
+  // scoreDisplay
+  // gameOverMessage
+  // newGameButton
+  // highScoreDisplay
+
+// Functions:
+  // initializeGame()
+  // generateFood()
+  // drawGame()
+  // updateSnake()
+  // changeDirection(event)
+  // checkCollision()
+  // endGame()
+  // saveHighScore(score)
+  // displayHighScores()
+
+// Event Listeners:
+  // newGameButton.addEventListener('click', startNewGame)
+  // document.addEventListener('keydown', changeDirection)
+
+// HTML:
+<!-- <div id="landing-page"> 
+ <div id="game-area">
+ <div class="snake-segment">
+ <div class="food">
+ <div id="score-display">
+ <div id="game-over-message">
+ <button id="new-game-button"> -->
+
+// CSS:
+    // #game-area
+    // .snake-segment
+    // .food
+    // #score-display
+    // #game-over-message
+    // #landing-page
+    // #new-game-button
+    // .high-score-display    

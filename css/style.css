@@ -1,0 +1,19 @@
+    /*
+    #game-area
+    .snake-segment
+    .food
+    #score-display
+    #game-over-message
+    #landing-page
+    #new-game-button
+    .high-score-display
+    */
+
+    .h1 {
+        font-family: 'Impact', sans-serif;
+        font-size: 50px;
+        color: #28333e; /* Matching the dark grey-blue color from the snake image */
+        letter-spacing: 0.2em; /* Adds space between letters to emphasize each character */
+        text-align: center; /* Center align the header */
+        margin-top: 20px;
+    }
