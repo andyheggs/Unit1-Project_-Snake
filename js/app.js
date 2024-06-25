@@ -90,7 +90,6 @@ let isGameRunning = false
 
 /*------------------------ Cached Element References ------------------------*/
 
-
   // landingPage - grid
 const gameArea = document.querySelector('.gameArea');
 
@@ -100,63 +99,8 @@ const cellElements = [];
   // newGameButton
   // highScoreDisplay
 
-/*------------------------ Grid Creation ------------------------*/
-//create a for loop integrating with the DOM to loop through the 20 x 20 grid ('gridSize') adding a ('cell'/div) in the 'gameArea'
-//consider the vlaue to be represented as 'i' this will not be a number.
-//add each 'cell' to the div classlist with an id of 'i' 
-
-for (let i = 0; i < gridSize; i++) {
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
-    cell.id = i;
-
-    // add snake to board in position middle 
-    if (snakePosition === i) {
-        cell.classList.add('snake');
-    }
-//set the height and width of each cell in CSS ('style') proportionately to the size of the `gameArea`
-cell.style.height = `${200 / gridHeight}%`; 
-cell.style.width =  `${200 / gridWidth}%`;
-
-cellElements.push(cell); //add cell to cellElements array
-gameArea.appendChild(cell); //append cell to page
-
-}
-
-const addSnake = () => {
-    cellElements[snakePosition].classList.add('snake')
-  }
-  
-  const removeSnake = () => {
-    cellElements[snakePosition].classList.remove('snake')
-  }
 
 /*-------------------------------- Functions --------------------------------*/
-/*
-17. **Control Snake**
-    17(a) Listen for key presses to change the snake's direction.
-    17(b) Allow starting the game with the spacebar.
-*/
-
-const changeDirection = (evt) => {
-
-    removeSnake()
-  
-    if (evt.code === 'ArrowRight' && snakePosition % gridWidth !== gridWidth - 1) {
-      snakePosition++
-    } else if (evt.code === 'ArrowLeft' && snakePosition % gridWidth !== 0) {
-      snakePosition--
-    } else if (evt.code === 'ArrowDown' && snakePosition + gridWidth <= gridSize - 1) {
-      snakePosition += width
-    } else if (evt.code === 'ArrowUp' && snakePosition - gridWidth >= 0) {
-      snakePosition -= gridWidth
-    } else {
-      
-    }
-    
-    addSnake()
-
-}    
 
 // **initialiseGame():** 
   //set game to intial/reinitialised position, establish state of all var's and el's before gameplay begins/resets
@@ -174,7 +118,7 @@ function initialiseGame() {
   score = 0;
 
   // 4(a) (re)set intial speed (m/s) to const intialSpeed:
-  speed = intialSpeed;
+  speed = initialSpeed;
 
   // 5(a) call genererateFood func to impement first food item:
   generateFood();
@@ -192,8 +136,24 @@ function initialiseGame() {
   // 8(a) Set game running state. update bool running var to true:
   isGameRunning = true;
 
-  
-    
+// 9(a) function required to remove any existing 'gameover' message:
+function existingMessage = document.querySelector('.game-over-message');
+
+//9(b) if statement to check and remove 'gameover' message child:
+  if (existingMessage) {
+    gameContainer.removeChild(existingMessage) 
+  }  
+ 
+  console.log('Game Initialised' , {
+    snake,
+    direction,
+    score,
+    speed,
+    food,
+    isGameRunning
+  });
+}     
+
 // **generateFood()**
   // this needs to be random position.  
   // need to ensure food doesnt generate on snake
@@ -223,11 +183,38 @@ function generateFood() {
         food = { x: foodX, y: foodY };
     }       
   // 4. (a)  ensure food XY loop continues 'while' assign food if intial food XY invalid
-  } while (isFoodOnSnake);  
+  } while (isFoodOnSnake);
+  
+  console.log('Food generated:', food)
 }
 
-  // drawGame()
-  // updateSnake() - handle primary game logic, update snake's state, collision cheking, manage game flow.
+// **updateGame()**
+  // - handle primary game logic, update snake's state, collision cheking, manage game flow.
+
+// 1(a) define function to change game state  
+function updateGame() {
+
+  //2(a) idetify snakes head in the object array, (snake[0]), create imutable duplicate, (spread operator) and; 
+  const head = { ...snake[0] };
+  
+  // 2(b) ...assign the copy to a the new XY direction. 
+  head.x += direction.x;
+  head.y += direction.y;
+
+  // 3(a) handle 'head' collision event, call endGame and exit:
+  if (isCollision(head)) {
+    endGame();
+    return;
+  }
+
+
+
+}
+
+
+
+
+
   // changeDirection(event)
   // checkCollision()
   // endGame()
