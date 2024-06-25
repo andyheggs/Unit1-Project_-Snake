@@ -41,7 +41,20 @@ const gridSize = gridWidth * gridHeight;
 
 const initialSnakeLength = 3;
 const initialSpeed = 500;
-const directions = 
+
+// define arrow key movement on 2d grid array
+// (width x axis coloumns, height y axis rows)
+// top left grid = 0,0.
+// snake start position to = grid center (cell 199 or x10, y10) to enable equal movements + an - from start point.  
+//define directions object const, maping arrow keys to object reflecting snake's change in position
+const directions = {
+// directional changes to be implemented on snake head position
+  ArrowUp: { x: 0, y: -1 },
+    // 0 movment horizontally, -1 movement vertically (e.g. 199-1, or x10, y9)
+  ArrowDown: { x: 0, y: 1 },
+  ArrowLeft: { x: -1, y: 0 },
+  ArrowRight: { x: 1, y: 0 }
+};  
 //const maxHighScores
 
 
@@ -53,7 +66,6 @@ const directions =
 */
 
 //Snake starting position
-let snakePosition = 105;
 let snake = [];
 let food = {};
 let direction
@@ -83,7 +95,7 @@ for (let i = 0; i < gridSize; i++) {
     cell.classList.add('cell');
     cell.id = i;
 
-    // add snake to board in position 105
+    // add snake to board in position middle 
     if (snakePosition === i) {
         cell.classList.add('snake');
     }
@@ -131,34 +143,41 @@ const changeDirection = (evt) => {
 
 }    
 
-  // initialiseGame()
-      // set game to intial/reinitialised position
-      // 1(a) Snake posiiton - 
+// initialiseGame()
+// set game to intial/reinitialised position
+// 1(a) create a function to intialiseGame
+function initialiseGame() {      
+  // 1(b) set start/reset snake position at center of grid X10,Y10 array object as a single segment
+  snake = [{x: 10, y: 10}] ;
+  // 2(a) set the snakes intial direction to move right
 
-  // generateFood()
-      // this need to be random position.  
-      // need to ensure food doesnt generate on snake
-      // needs to loop to check avalible space
-      // needs to carry out multiple actions simultaneously (generate coord, check overlap, assign position) 'dowhile' loop 
-        // 1. (a) create var to check if food on snake (isFoodOnSnake)
-        function generateFood() {
-          let isFoodOnSnake;
-        // 1. (b) 'do' loop to intiate random XY
-          do {
-        // 1. (c. i) random XY coordinates (need to keep within XY limits) math.random to gen # btw 0-1.  
-        // 1  (c. ii) float scale to reflect grid size. (* by gridSize) 
-              const foodX = Math.floor(Math.random() * GRID_SIZE);
-              const foodY = Math.floor(Math.random() * GRID_SIZE);
-        // 2. (a) check random XY co-ord's generated dont land on snake
-        // 2. (b) check snake array for overlpa (use bool response) some() itirator and callback func. to check each segment of the snake XY v/s foor XY
-              isFoodOnSnake = snake.some(segment => segment.x === foodX && segment.y === foodY);
-        // 3. (a) 'if' isFoodOnSnake !== on snake assign XY to food var.
-              if (!isFoodOnSnake) {
-          food = { x: foodX, y: foodY };
-              }       
-        // 4. (a)  ensure food XY loop continues 'while' assign food if intial food XY invalid
-           } while (isFoodOnSnake);  
-        }
+
+
+// generateFood()
+  // this need to be random position.  
+  // need to ensure food doesnt generate on snake
+  // needs to loop to check avalible space
+  // needs to carry out multiple actions simultaneously (generate coord, check overlap, assign position) 'dowhile' loop 
+// 1. create func. generateFood to gen new food item      
+function generateFood() {
+    // 1. (a) create var to check if food on snake (isFoodOnSnake)
+  let isFoodOnSnake;
+  // 1. (b) 'do' loop to intiate random XY
+  do {
+    // 1. (c. i) random XY coordinates (need to keep within XY limits) math.random to gen # btw 0-1.  
+    // 1  (c. ii) float scale to reflect grid size. (* by gridSize) 
+    const foodX = Math.floor(Math.random() * GRID_SIZE);
+    const foodY = Math.floor(Math.random() * GRID_SIZE);
+    // 2. (a) check random XY co-ord's generated dont land on snake
+    // 2. (b) check snake array for overlpa (use bool response) some() itirator and callback func. to check each segment of the snake XY v/s foor XY
+    isFoodOnSnake = snake.some(segment => segment.x === foodX && segment.y === foodY);
+    // 3. (a) 'if' isFoodOnSnake !== on snake assign XY to food var.
+    if (!isFoodOnSnake) {
+        food = { x: foodX, y: foodY };
+    }       
+  // 4. (a)  ensure food XY loop continues 'while' assign food if intial food XY invalid
+  } while (isFoodOnSnake);  
+}
 
   // drawGame()
   // updateSnake()
