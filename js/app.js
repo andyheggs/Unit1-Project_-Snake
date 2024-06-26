@@ -143,7 +143,7 @@ function existingMessage = document.querySelector('.game-over-message');
   if (existingMessage) {
     gameContainer.removeChild(existingMessage) 
   }  
- 
+ // console log var status
   console.log('Game Initialised' , {
     snake,
     direction,
@@ -207,9 +207,48 @@ function updateGame() {
     return;
   }
 
+  //4(a) Move the snake. 
+    //create the effect of movement by adding a new segment to the head of the snake (the begininng of the game array).  
+    //implement unshift iterator to add the head segment to the beginning of the array
+  snake.unshift(head);
+
+  //4(b) Check 'if' snake has eaten food (if snake head XY matches food XY)
+  if (head.x === food.x && head.y === food.y) {
+
+    //4(c) increase the score by one if food has been eaten:
+    score++;
+
+    //4(d) if food eaten add new food item to game play, call foodEaten func.
+    foodEaten();
+
+    // 4(e) if food eaten, increase speed of game/difficulty.
+      // update the speed var to reduce the time it takes for the gameInterval to move the head, subtracting from intialSpeed const.
+      // implement a modest time reduction to test first and adjust accordingly in testing (-10ms)
+      // ensure a time/speed limiter can prevent the snkae moving too quickly. Set a min gameInterval speed, (max snake speed) to control this.
+      // establish a method to compare min inteval with new interval speed to ensure it doesnt exceed the limts set (math.max)
+    speed = Math.max(50, speed - 10);
+
+    // 4(f) clear previous timing in gameInterval to implement new speed if food eaten. 
+    clearInterval(gameInterval);
+
+    // 4(g) update gameInterval timing to implement new speed if food eaten. 
+    gameInterval = setInterval(updateGame, speed);
+
+    //4(h) maitain game state if food !== eaten. 
+      // remove last snake segment in array to maintain exisitng size of snake having not eaten food and 
+      //simulate the movement of the sbkae on the grid using pop() iterator
+  } else {
+    snake.pop();
+  } 
+  
+  // 4(i) visually update (render) the changes to the game area with the new positons of the snake and food (as applicable) by calling the render func.  
+  renderGame(); 
+
+}  
+
+// **RendereGame()**
 
 
-}
 
 
 
