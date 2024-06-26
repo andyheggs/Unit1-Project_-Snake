@@ -89,15 +89,10 @@ let isGameRunning = false
 //let highScores
 
 /*------------------------ Cached Element References ------------------------*/
-
-  // landingPage - grid
-const gameArea = document.querySelector('.gameArea');
-
-const cellElements = []; 
-  // scoreDisplay
-  // gameOverMessage
-  // newGameButton
-  // highScoreDisplay
+// 1(a) Dynamically create HTML element displaying gamne grid to update and render board, snake and food 
+const gameContainer = document.getElementById('game-container');
+// 2(a) Dynamically create HTML element displaying start button
+const newGameButton = document.getElementById('new-game');
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -384,14 +379,17 @@ console.log('Direction changed', direction);
 }
 /*----------------------------- Event Listeners -----------------------------*/
 
+// 1(a) create listener for click event on "New Game" button.
 newGameButton.addEventListener('click', initializeGame);
 
+// 2(a) create listener for keydown events (ref. changeDirection func.)
 document.addEventListener('keydown', changeDirection);
 
+// 3(a) create listener for spcebar key press event. 
 document.addEventListener('keydown', (event) => {
-
+    // 3(b) Initialise game 'if' the spacebar pressed and game not running
     if (event.key === ' ' && !isGameRunning) {
-
+        // 3(c) intialise game
         initializeGame();
     }
 });
