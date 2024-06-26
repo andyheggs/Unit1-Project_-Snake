@@ -136,8 +136,8 @@ function initialiseGame() {
   // 8(a) Set game running state. update bool running var to true:
   isGameRunning = true;
 
-// 9(a) function required to remove any existing 'gameover' message:
-function existingMessage = document.querySelector('.game-over-message');
+// 9(a) element required to remove any existing 'gameover' message:
+  const existingMessage = document.querySelector('.game-over-message');
 
 //9(b) if statement to check and remove 'gameover' message child:
   if (existingMessage) {
@@ -212,6 +212,8 @@ function updateGame() {
     //implement unshift iterator to add the head segment to the beginning of the array
   snake.unshift(head);
 
+  console.log('New head position:', head);
+
   //4(b) Check 'if' snake has eaten food (if snake head XY matches food XY)
   if (head.x === food.x && head.y === food.y) {
 
@@ -234,6 +236,8 @@ function updateGame() {
     // 4(g) update gameInterval timing to implement new speed if food eaten. 
     gameInterval = setInterval(updateGame, speed);
 
+    console.log('Food eaten. New score:', score, 'New speed:', speed);
+
     //4(h) maitain game state if food !== eaten. 
       // remove last snake segment in array to maintain exisitng size of snake having not eaten food and 
       //simulate the movement of the sbkae on the grid using pop() iterator
@@ -241,15 +245,56 @@ function updateGame() {
     snake.pop();
   } 
   
+  console.log('Snake updated:', snake);
+
   // 4(i) visually update (render) the changes to the game area with the new positons of the snake and food (as applicable) by calling the render func.  
   renderGame(); 
 
 }  
 
-// **RendereGame()**
+// **RenderGame()**
+  //Visually update the playrs display to reflect the current state of the game.
+    // clear prior state and display current.
 
+// 1(a) define function to change game state  
+function renderGame() {
 
+  // 1(b) clear/refresh the html <div> and id 'game-container' to ensure new state of game play
+  gameContainer.innerHTML = '';
 
+  // 2(a) create a new div element for each y cell of the const GridSize, looping through for y:
+  for (let y = 0; y < GRID_SIZE; y++) {
+
+    // 2(b) create a new div element for each x cell of the const GridSize, nesting loop for x:
+    for (let x = 0; x < GRID_SIZE; x++) {
+      
+      // 2(c) create a new div for each cell
+      const cell = document.createElement('div');
+
+      // 2(d) add the 'cell' to the cell classlist
+      cell.classList.add('cell');
+
+      // 2(e) Check 'if' the cells content to estblish if the current cell xy matches the snake segment(s). 
+      if (isSnakeCell(x, y)) {
+      
+        // 2(f) if snake is in position xy add the snake to the cell classlist to dispaly
+        cell.classList.add('snake');
+
+      // 2(g) complete the same process for the food item adding to the cell classList accordingly
+      } else if (x === food.x && y === food.y) {
+          cell.classList.add('food');
+      } 
+      
+      // 2(h) finally update the gameContainer appending the child to the cell
+      gameConatiner.appendChild(cell); 
+
+    }    
+
+  }
+    
+  console.log('Game rendered');
+
+}
 
 
 
