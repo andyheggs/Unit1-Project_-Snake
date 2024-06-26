@@ -252,7 +252,7 @@ function updateGame() {
 
 }  
 
-// **RenderGame()**
+// **renderGame()**
   //Visually update the playrs display to reflect the current state of the game.
     // clear prior state and display current.
 
@@ -291,19 +291,25 @@ function renderGame() {
     }    
 
   }
-    
+
   console.log('Game rendered');
 
 }
 
+// **isSnakeCell()**
+  // implement funcitonality to determine wether a specific cell on the grid is part of the snakes body. 
+    // This is necessary for rendering snake and collision detection.
 
+// 1(a) define function;  
+function isSnakeCell(x, y) {
 
+  //1(b) iteratate snake array to deterninbe if snkae segment is present (equivlent to isFoodOnSnake syntax) (some()); 
+  return snake.some(segment => segment.x === x && segment.y === y); 
 
-  // changeDirection(event)
-  // checkCollision()
-  // endGame()
-  // saveHighScore(score)
-  // displayHighScores()
+{
+
+  
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -315,7 +321,7 @@ function renderGame() {
 */
 //newGameButton.addEventListener('click', startNewGame)
 
-document.addEventListener('keydown', changeDirection);
+// document.addEventListener('keydown', changeDirection);
 
 
 
