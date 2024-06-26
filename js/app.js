@@ -81,7 +81,7 @@ let score = 0;
 let gameInterval;
 
 //assign starting snake speed to 500ms; 
-let speed = intialSpeed
+let speed = initialSpeed
 
 //create var to ensure intial default play state is inactive
 let isGameRunning = false
@@ -89,8 +89,10 @@ let isGameRunning = false
 //let highScores
 
 /*------------------------ Cached Element References ------------------------*/
+
 // 1(a) Dynamically create HTML element displaying gamne grid to update and render board, snake and food 
 const gameContainer = document.getElementById('game-container');
+
 // 2(a) Dynamically create HTML element displaying start button
 const newGameButton = document.getElementById('new-game');
 
@@ -166,8 +168,8 @@ function generateFood() {
     
     // 1. (c. i) random XY coordinates (need to keep within XY limits) math.random to gen # btw 0-1.  
     // 1  (c. ii) float scale to reflect grid size. (* by gridSize) 
-    const foodX = Math.floor(Math.random() * GRID_SIZE);
-    const foodY = Math.floor(Math.random() * GRID_SIZE);
+    const foodX = Math.floor(Math.random() * gridWidth);
+    const foodY = Math.floor(Math.random() * gridHeight);
     
     // 2. (a) check random XY co-ord's generated dont land on snake
     // 2. (b) check snake array for overlpa (use bool response) some() itirator and callback func. to check each segment of the snake XY v/s foor XY
@@ -196,6 +198,8 @@ function updateGame() {
   head.x += direction.x;
   head.y += direction.y;
 
+  console.log('New head position:', head);
+
   // 3(a) handle 'head' collision event, call endGame and exit:
   if (isCollision(head)) {
     endGame();
@@ -207,16 +211,14 @@ function updateGame() {
     //implement unshift iterator to add the head segment to the beginning of the array
   snake.unshift(head);
 
-  console.log('New head position:', head);
-
-  //4(b) Check 'if' snake has eaten food (if snake head XY matches food XY)
+   //4(b) Check 'if' snake has eaten food (if snake head XY matches food XY)
   if (head.x === food.x && head.y === food.y) {
 
     //4(c) increase the score by one if food has been eaten:
     score++;
 
     //4(d) if food eaten add new food item to game play, call foodEaten func.
-    foodEaten();
+    generateFood();
 
     // 4(e) if food eaten, increase speed of game/difficulty.
       // update the speed var to reduce the time it takes for the gameInterval to move the head, subtracting from intialSpeed const.
@@ -258,10 +260,10 @@ function renderGame() {
   gameContainer.innerHTML = '';
 
   // 2(a) create a new div element for each y cell of the const GridSize, looping through for y:
-  for (let y = 0; y < GRID_SIZE; y++) {
+  for (let y = 0; y < gridHeight; y++) {
 
     // 2(b) create a new div element for each x cell of the const GridSize, nesting loop for x:
-    for (let x = 0; x < GRID_SIZE; x++) {
+    for (let x = 0; x < gridWidth; x++) {
       
       // 2(c) create a new div for each cell
       const cell = document.createElement('div');
@@ -281,7 +283,7 @@ function renderGame() {
       } 
       
       // 2(h) finally update the gameContainer appending the child to the cell
-      gameConatiner.appendChild(cell); 
+      gameContainer.appendChild(cell); 
 
     }    
 
@@ -307,7 +309,7 @@ function isSnakeCell(x, y) {
   // function required to check if new head position results in a collision with wall || self to detemnie if game over condition met
 
 // 1(a) define function;  
-function ifCollision(head) {
+function isCollision(head) {
 
   return (
 
@@ -362,13 +364,13 @@ function changeDirection(event) {
   if (!isGameRunning) return;
 
   // 1(c) retrieve new direction based on key pressed with event.key property attached to const direcitons object 
-  const newDirections = directions[event.key];
+  const newDirection = directions[event.key];
 
   // 1(d) validate and update direction checking for wrong key press and reverse.
     // 1(d. i) validate key press (newDirection) to ensure it is not undefined/null etc, (logical operator to detemrine truthy/flasy), if true check next condition
     // 1(d. ii) check if newDirection is opposite of current direction for x && y (newDirection.x/y ==== -direction.x/y)
     // 1(d. iii) invert direction check logic if direction change is true with ! operator to falsy to prevetn code block execution.   
-  if (newDirection && !(newDirection.x === -direction.x && newDirection.y === -direction)) {
+  if (newDirection && !(newDirection.x === -direction.x && newDirection.y === -direction.y)) {
 
     // 1(e) if correct key press event and valid direciton implement newDirection:
     direction = newDirection;
@@ -380,7 +382,7 @@ console.log('Direction changed', direction);
 /*----------------------------- Event Listeners -----------------------------*/
 
 // 1(a) create listener for click event on "New Game" button.
-newGameButton.addEventListener('click', initializeGame);
+newGameButton.addEventListener('click', initialiseGame);
 
 // 2(a) create listener for keydown events (ref. changeDirection func.)
 document.addEventListener('keydown', changeDirection);
@@ -390,7 +392,7 @@ document.addEventListener('keydown', (event) => {
     // 3(b) Initialise game 'if' the spacebar pressed and game not running
     if (event.key === ' ' && !isGameRunning) {
         // 3(c) intialise game
-        initializeGame();
+        initialiseGame();
     }
 });
 
