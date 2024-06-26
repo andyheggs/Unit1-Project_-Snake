@@ -325,6 +325,39 @@ function ifCollision(head) {
   );
 }
 
+// **endGame()**
+//function executed upon snake collison - stop game loop, clear timing interval, chmnage game state to false, inform player, inc. score. 
+
+// 1(a) define function;  
+function endGame() {
+
+  //(b) prevent game from continuing update and render by cleairning timing interval:
+  clearInterval(gameInterval);
+
+  //1(c) chenge the game state const:
+  isGameRunning = false;
+
+  //2(a) implement game page to display game over message and include score;
+  // 2 (a. i) create HTML div element to display message and score:
+  const gameOverMessage = document.createElement('div');
+
+  // 2 (a. ii) add game over message to div classList:
+  gameOverMessage.classList.add('game-over-message');
+
+  // 2 (a. iii) add the game over text content and score temp lit:
+  gameOverMessage.textContent = `Game Over! Your score is: ${score}`;
+
+  // 2 (a. iv) append game over message ansd score to game container:
+  gameContainer.appendChild(gameOverMessage);
+
+  console.log('Game over. Final score:', score);
+
+}
+
+
+
+
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
