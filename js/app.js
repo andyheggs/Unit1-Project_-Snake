@@ -355,21 +355,46 @@ function endGame() {
 }
 
 
+// **changeDirection()** 
+  //impplementing arrow key exection to enable snake movement based on const directions object arrows. 
+  //add event listners to listen for 'key' press events (keydown) and call function
+  //function to mitigate against incorrect key presses and reversing change in direction 
+ 
+  // 1(a) define function with event property;  
+function changeDirection(event) {
 
+  // 1(b) prevent direciton change by returning 'if' game is not running, i.e. over or unititiated:
+  if (!isGameRunning) return;
 
+  // 1(c) retrieve new direction based on key pressed with event.key property attached to const direcitons object 
+  const newDirections = directions[event.key];
 
+  // 1(d) validate and update direction checking for wrong key press and reverse.
+    // 1(d. i) validate key press (newDirection) to ensure it is not undefined/null etc, (logical operator to detemrine truthy/flasy), if true check next condition
+    // 1(d. ii) check if newDirection is opposite of current direction for x && y (newDirection.x/y ==== -direction.x/y)
+    // 1(d. iii) invert direction check logic if direction change is true with ! operator to falsy to prevetn code block execution.   
+  if (newDirection && !(newDirection.x === -direction.x && newDirection.y === -direction)) {
 
+    // 1(e) if correct key press event and valid direciton implement newDirection:
+    direction = newDirection;
+  }
+
+console.log('Direction changed', direction);
+
+}
 /*----------------------------- Event Listeners -----------------------------*/
 
-/*
-16. **Event Listeners**
-    16(a) Start New Game
-    16(b) Hide the landing page and show the game area.
-    16(c) Initialise the game and start the game loop.
-*/
-//newGameButton.addEventListener('click', startNewGame)
+newGameButton.addEventListener('click', initializeGame);
 
-// document.addEventListener('keydown', changeDirection);
+document.addEventListener('keydown', changeDirection);
+
+document.addEventListener('keydown', (event) => {
+
+    if (event.key === ' ' && !isGameRunning) {
+
+        initializeGame();
+    }
+});
 
 
 
