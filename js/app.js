@@ -303,12 +303,27 @@ function renderGame() {
 // 1(a) define function;  
 function isSnakeCell(x, y) {
 
-  //1(b) iteratate snake array to deterninbe if snkae segment is present (equivlent to isFoodOnSnake syntax) (some()); 
+  //1(b) iteratate snake array to deterninbe if snkae segment is present (true) (equivlent to isFoodOnSnake syntax) (some()); 
   return snake.some(segment => segment.x === x && segment.y === y); 
 
-{
+}
 
-  
+// **isCollision**
+  // function required to check if new head position results in a collision with wall || self to detemnie if game over condition met
+
+// 1(a) define function;  
+function ifCollision(head) {
+
+  return (
+
+    // 1(b) first check the gridSize boundaries for both x & y coords;
+    head.x < 0 || head.x >= gridSize ||
+    head.y < 0 || head.y >= gridSize ||
+
+    //1(c) then check impact with head to any segment. necessary to call isSnakeCell funciton to compare if current xy coords true;
+    isSnakeCell(head.x, head.y)  
+  );
+}
 
 
 /*----------------------------- Event Listeners -----------------------------*/
