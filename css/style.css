@@ -1,17 +1,30 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #EAEAE1;
+    color: #333;
 }
 
 .landing-page {
     text-align: center;
     margin-bottom: 20px;
+    padding: 5px;
+    background-color: #f#EAEAE1;
+    border-radius: 0px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.logo {
+    width: 300px;
+    margin-bottom: 0
 }
 
 .game-container {
@@ -21,6 +34,10 @@ body {
     gap: 1px;
     background-color: #333;
     position: relative;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .cell {
@@ -47,4 +64,25 @@ body {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+
+button {
+    background-color: #ff7761;
+    color: #182935;
+    border: black 15px;
+    padding: 10px 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+p {
+    padding: 20px
 }

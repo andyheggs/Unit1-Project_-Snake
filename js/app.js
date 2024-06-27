@@ -96,6 +96,8 @@ const gameContainer = document.getElementById('game-container');
 // 2(a) Dynamically create HTML element displaying start button
 const newGameButton = document.getElementById('new-game');
 
+// 3(a) Dynamically create HTML element displaying score
+const scoreElement = document.querySelector('.score-value');
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -139,7 +141,8 @@ function initialiseGame() {
 //9(b) if statement to check and remove 'gameover' message child:
   if (existingMessage) {
     gameContainer.removeChild(existingMessage) 
-  }  
+  }
+    
  // console log var status
   console.log('Game Initialised' , {
     snake,
@@ -235,7 +238,10 @@ function updateGame() {
 
     console.log('Food eaten. New score:', score, 'New speed:', speed);
 
-    //4(h) maitain game state if food !== eaten. 
+      //4(h) Update score display
+      scoreElement.textContent = score;
+
+    //4(i) maitain game state if food !== eaten. 
       // remove last snake segment in array to maintain exisitng size of snake having not eaten food and 
       //simulate the movement of the sbkae on the grid using pop() iterator
   } else {
@@ -244,7 +250,7 @@ function updateGame() {
   
   console.log('Snake updated:', snake);
 
-  // 4(i) visually update (render) the changes to the game area with the new positons of the snake and food (as applicable) by calling the render func.  
+  // 4(j) visually update (render) the changes to the game area with the new positons of the snake and food (as applicable) by calling the render func.  
   renderGame(); 
 
 }  
@@ -314,8 +320,8 @@ function isCollision(head) {
   return (
 
     // 1(b) first check the gridSize boundaries for both x & y coords;
-    head.x < 0 || head.x >= gridSize ||
-    head.y < 0 || head.y >= gridSize ||
+    head.x < 0 || head.x >= gridWidth ||
+    head.y < 0 || head.y >= gridHeight ||
 
     //1(c) then check impact with head to any segment. necessary to call isSnakeCell funciton to compare if current xy coords true;
     isSnakeCell(head.x, head.y)  
