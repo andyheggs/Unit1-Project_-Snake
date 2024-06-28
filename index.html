@@ -7,13 +7,33 @@
     <title>S_N_A_K_E</title>
 </head>
 <body>
-    <div class="landing-page">
-        <img src='./images/logo.png' alt="Logo" class="logo">
-        <h1>S_N_A_K_E</h1>
+    <div class="container">
+        <aside>
+            <div class="score">
+                <h2>Your Score</h2>
+                <div class="score-value">0</div>
+            </div>
+            <div class="high-scores">
+                <h2>High Scores</h2>
+                <ol>
+                    <li>0</li>
+                    <li>0</li>
+                    <li>0</li>
+                    <li>0</li>
+                    <li>0</li>
+                </ol>
+            </div>
+        </aside>
+        <main>
+            <div class="game-container" id="game-container">
+                <img src="../images/logo.png" alt="Logo featuring a snake with red and black scales standing with its body rasied and tongue out against a red diamond background" class="game-logo">
+            </div>
+        </main>
+    </div>
+    <div class="instructions">
+        <p>Instructions: Press the spacebar or click 'New Game' to begin play! Use the arrow keys to move the snake and collect food. The game gets faster with each food item collected. Try to achieve the highest score!</p>
         <button id="new-game">New Game</button>
     </div>
-    <div class="game-container" id="game-container"></div>
-    <p>Instructions: Use the arrow keys to move the snake and collect food. The game gets faster with each food item collected. Try to achieve the highest score!</p>
     <script defer src="./js/app.js"></script>
 </body>
 </html>

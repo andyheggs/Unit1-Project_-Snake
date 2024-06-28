@@ -1,29 +1,5 @@
 
-/*-------------------------------- User Story --------------------------------*/
 
-// As a user, I want to see a landing page when I arrive at the website to know I’m in the right place.
-
-// As a user, I want to see instructions on the landing page, so I can understand the rules for gameplay.
-
-// As a user, I want to see clearly labeled buttons for “New Game”, on the landing page, so I can play again.
-
-// As a user, I want to be able to click on the game play area, or press the spacebar to initiate play.
-
-// As a user, I want visual feedback immediately after initiating play, so I know my choice has been registered.
-
-// As a user, I want the computer to generate the snake's position and food item once I initiate play .
-
-// As a user, I want to be able to use the arrow keys to direct the snake to collect the food item.
-
-// As a user, I want to be able to record a score when I collect a food item.
-
-// As a user, I want the game to increase in difficulty after collecting each food item
-
-// As a user, I want to be presented with a clear message indicating if the game is over.
-
-// As a user, I want to play another round to try to improve my score.
-
-// As a user, I want to maintain a record of the top five highest scores.
 
 /*-------------------------------- Constants --------------------------------*/
 //**DEFINE GAME CONSTANTS**
@@ -142,6 +118,12 @@ function initialiseGame() {
   if (existingMessage) {
     gameContainer.removeChild(existingMessage) 
   }
+
+   // Update score display
+   scoreElement.textContent = score;
+
+   // Clear the background image
+   gameContainer.style.backgroundImage = 'none';
     
  // console log var status
   console.log('Game Initialised' , {
@@ -348,7 +330,7 @@ function endGame() {
   gameOverMessage.classList.add('game-over-message');
 
   // 2 (a. iii) add the game over text content and score temp lit:
-  gameOverMessage.textContent = `Game Over! Your score is: ${score}`;
+  gameOverMessage.textContent = 'Game Over!';
 
   // 2 (a. iv) append game over message ansd score to game container:
   gameContainer.appendChild(gameOverMessage);

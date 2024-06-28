@@ -1,49 +1,101 @@
 body {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Impact', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     margin: 0;
     background-color: #EAEAE1;
     color: #333;
 }
 
-.landing-page {
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 5px;
-    background-color: #f#EAEAE1;
-    border-radius: 0px;
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
 }
 
-h1 {
-    font-size: 50px;
+aside {
+    flex: 0.5;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 50px; 
+    box-sizing: border-box;
+    height: 400px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid black; 
+    border-radius: 10px; 
+    text-align: center; 
 }
 
-.logo {
-    width: 300px;
-    margin-bottom: 0
+aside h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.score, .high-scores {
+    margin-bottom: 10px;
+}
+
+.score-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.high-scores ol {
+    padding-left: 0; 
+    list-style-position: inside; 
+}
+
+.high-scores li {
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .game-container {
     display: grid;
-    grid-template-columns: repeat(20, 20px);
-    grid-template-rows: repeat(20, 20px);
-    gap: 1px;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
     background-color: #333;
     position: relative;
     margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 2px solid #000;
+    width: 400px;
+    height: 400px; 
+    overflow: hidden;
+}
+
+.game-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
 }
 
 .cell {
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 100%;
     background-color: #fff;
+    border: 1px solid #333; 
+    box-sizing: border-box;
 }
 
 .snake {
@@ -52,6 +104,37 @@ h1 {
 
 .food {
     background-color: #dc3545;
+}
+
+.instructions {
+    width: 65%; 
+    text-align: center;
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-left: 20px; 
+    margin-right: 20px; 
+    border: 2px solid black; 
+    border-radius: 10px; 
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
 }
 
 .game-over-message {
@@ -64,25 +147,4 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-}
-
-button {
-    background-color: #ff7761;
-    color: #182935;
-    border: black 15px;
-    padding: 10px 20px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-p {
-    padding: 20px
 }
