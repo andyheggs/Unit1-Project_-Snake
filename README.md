@@ -16,7 +16,7 @@ The inspiration for S\_N\_A\_K\_E came from the countless hours spent playing Sn
 
 **Getting Started**
 
-You can start playing S\_N\_A\_K\_E by visiting the following link: [Link to your deployed game]
+You can start playing S\_N\_A\_K\_E by visiting the following link: [(https://andyheggs.github.io/Unit1-Project_-Snake/)]
 
 **Instructions**
 
