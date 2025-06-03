@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     height: 100vh;
     margin: 0;
     background-color: #EAEAE1;
@@ -14,24 +14,27 @@ body {
     display: flex;
     width: 100%;
     max-width: 1200px;
+    justify-content: center;
+    align-items: center;
 }
 
 aside {
     flex: 0.5;
-    padding: 10px;
+    max-width: 15%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    margin-right: 5px;
-    margin-left: 50px; 
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 50px;
+    margin-left: 0;
     box-sizing: border-box;
-    height: 400px; 
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid black; 
-    border-radius: 10px; 
-    text-align: center; 
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
 }
 
 aside h2 {
@@ -50,8 +53,8 @@ aside h2 {
 }
 
 .high-scores ol {
-    padding-left: 0; 
-    list-style-position: inside; 
+    padding-left: 0;
+    list-style-position: inside;
 }
 
 .high-scores li {
@@ -60,7 +63,6 @@ aside h2 {
 }
 
 main {
-    flex: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,7 +78,7 @@ main {
     margin-bottom: 20px;
     border: 2px solid #000;
     width: 400px;
-    height: 400px; 
+    height: 400px;
     overflow: hidden;
 }
 
@@ -94,7 +96,7 @@ main {
     width: 100%;
     height: 100%;
     background-color: #fff;
-    border: 1px solid #333; 
+    border: 1px solid #333;
     box-sizing: border-box;
 }
 
@@ -107,7 +109,8 @@ main {
 }
 
 .instructions {
-    width: 65%; 
+    position: center;
+    max-width: 50vw;
     text-align: center;
     margin-top: 10px;
     background-color: #fff;
@@ -115,10 +118,10 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    margin-left: 20px; 
-    margin-right: 20px; 
-    border: 2px solid black; 
-    border-radius: 10px; 
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 button {

@@ -24,6 +24,38 @@ let isGameRunning = false;
 const gameContainer = document.getElementById('game-container');
 const newGameButton = document.getElementById('new-game');
 const scoreElement = document.querySelector('.score-value');
+const highScoresList = document.querySelector('.high-scores ol');
+
+
+displayHighScores();
+
+function getHighScores() {
+
+  return JSON.parse(localStorage.getItem('snakeHighScores')) || [];
+}
+
+function saveHighScores(scores) {
+  localStorage.setItem('snakeHighScores', JSON.stringify(scores));
+}
+
+function updateHighScores(newScore) {
+  let scores = getHighScores();
+  scores.push(newScore);
+  scores.sort((a, b) => b - a);
+  scores = scores.slice(0, 5);
+  saveHighScores(scores);
+  displayHighScores();
+}
+
+function displayHighScores() {
+  const scores = getHighScores();
+  highScoresList.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const li = document.createElement('li');
+    li.textContent = scores[i] || 0;
+    highScoresList.appendChild(li);
+  }
+}
 
 function initialiseGame() {
   snake = [{x: 10, y: 10}];
@@ -49,7 +81,7 @@ function initialiseGame() {
     food,
     isGameRunning
   });
-}     
+}
 
 function generateFood() {
   let isFoodOnSnake;
@@ -121,6 +153,7 @@ function isCollision(head) {
 function endGame() {
   clearInterval(gameInterval);
   isGameRunning = false;
+  updateHighScores(score);
   const gameOverMessage = document.createElement('div');
   gameOverMessage.classList.add('game-over-message');
   gameOverMessage.textContent = 'Game Over!';
