@@ -4,7 +4,7 @@
 
 ###  **Logo**
 
-![image.png](https://trello.com/1/cards/6679536a8670cf1ae088425b/attachments/667e9cfb5f113efb13c4898d/download/image.png)
+![image.png](https://github.com/andyheggs/Unit1-Project_-Snake/blob/main/logo.png)
 
 **Description**
 
